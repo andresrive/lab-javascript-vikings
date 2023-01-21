@@ -59,17 +59,27 @@ class War {
         let attackingViking = Math.floor(Math.random() * this.vikingArmy.length)
         let defendingSaxon = Math.floor(Math.random() * this.saxonArmy.length)
 
-        let resultAttack = this.saxonArmy[defendingSaxon].receiveDamage(this.vikingArmy[attackingViking].strength)
+        let resultVikAttack = this.saxonArmy[defendingSaxon].receiveDamage(this.vikingArmy[attackingViking].strength)
 
-        if (this.saxonArmy[defendingSaxon].health < 0) {
+        if (this.saxonArmy[defendingSaxon].health <= 0) {
             this.saxonArmy.splice(defendingSaxon)
         }
 
-        return resultAttack
+        return resultVikAttack
 
 
     }
     saxonAttack() {
+        let attackingSaxon = Math.floor(Math.random() * this.saxonArmy.length)
+        let defendingViking = Math.floor(Math.random() * this.vikingArmy.length)
+
+        let resultSaxAttack = this.vikingArmy[defendingViking].receiveDamage(this.saxonArmy[attackingSaxon].strength)
+
+        if (this.vikingArmy[defendingViking].health <= 0) {
+            this.vikingArmy.splice(defendingViking)
+        }
+
+        return resultSaxAttack
 
     }
     showStatus() {
